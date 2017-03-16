@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Post;
 
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class PagesController extends Controller
 {
     //
     public function getHome(){
-      return view('home');
+      $posts = Post::orderBy('created_at','desc')->limit(4)->get();
+      return view('home')->with('posts',$posts);
 
     }
 
